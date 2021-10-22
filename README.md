@@ -1,4 +1,4 @@
-# [portfolio](https://alexandrkarpovich.github.io/portfolio/)
+# [portfolio](https://alexandrkarpovich.github.io/porfolio/)
 
 now :
 - html
