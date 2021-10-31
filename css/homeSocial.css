@@ -1,0 +1,26 @@
+/*homeSocial*/
+.homeSocial a {
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+.homeSocial i{
+    animation-name:spreadIcons;
+    animation-duration:4s;
+    animation-delay:0.2s;
+    animation-iteration-count:1;
+    animation-fill-mode: forwards;
+    animation-timing-function:ease-out;
+}
+@keyframes spreadText{
+    from{letter-spacing:-20px;opacity:0;}
+    to{letter-spacing: 1px;opacity:1;}
+}
+@keyframes spreadIcons{
+    from{margin:0;opacity:0;}
+    to{margin:0 10px 0 10px;opacity:1;}
+}
+@keyframes upDown {
+    0% {margin-top: 0;}
+    100% {margin-top: 20px;}
+}

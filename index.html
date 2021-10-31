@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Portfolio</title>
 </head>
 <body>
@@ -10,26 +11,36 @@
 <div class="site-wrap">
     <div class="panel-wrap animate--tilt">
         <div class="panel" data-x-pos="0"  data-y-pos="0">
-            <span class="panel__nav panel__nav--up js-up">ABOUT</span>
-            <span class="panel__nav panel__nav--left js-left">SKILLS</span>
-            <span class="panel__nav panel__nav--right js-right">WORKS</span>
-            <span class="panel__nav panel__nav--down js-down">CONTACTS</span>
-            <span class="panel__zoom js-zoom">View All</span>
-            <h1>Main</h1>
+            <nav class="menu">
+                <span class="panel__nav panel__nav--up js-up">ABOUT</span>
+                <span class="panel__nav panel__nav--left js-left">SKILLS</span>
+                <span class="panel__nav panel__nav--right js-right">WORKS</span>
+                <span class="panel__nav panel__nav--down js-down">CONTACTS</span>
+                <span class="panel__zoom js-zoom">View All</span>
+            </nav>
+            <div class="page-descrp">
+                <h1>Main</h1>
+            </div>
 
+            <!--crowed canvas-->
+            <canvas id="canvas"></canvas>
+
+            <!-- social-->
 <!--            <div class="homeSocial">-->
-<!--                <a href="#" target="_blank" title="My Twitter">-->
-<!--                    <i class="fa fa-twitter fa-2x fa-fw"></i></a>-->
-<!--                <a href="#" target="_blank" title="My freeCodeCamp">-->
-<!--                    <i class="fa fa-free-code-camp fa-2x fa-fw"></i></a>-->
-<!--                <a href="https://github.com/AlexandrKarpovich" target="_blank" title="My GitHub" id="profile-link"><i class="fa fa-github fa-2x fa-fw" ></i></a>-->
+<!--                <a href="#" target="_blank" title="My Instagram">-->
+<!--                    <i class="fa fa-instagram fa-2x fa-fw"></i>-->
+<!--                <a href="https://github.com/AlexandrKarpovich" target="_blank" title="My GitHub" id="profile-link">-->
+<!--                    <i class="fa fa-github fa-2x fa-fw" ></i>-->
+<!--                </a>-->
 <!--            </div>-->
+
+
 
         </div>
         <div class="panel" data-x-pos="0"  data-y-pos="1">
             <span class="panel__nav panel__nav--left js-down js-left">SKILLS</span>
             <span class="panel__nav panel__nav--right js-down js-right">WORKS</span>
-            <span class="panel__nav panel__nav--down js-down">CONTACTS</span>
+            <span class="panel__nav panel__nav--down js-down">Main</span>
             <span class="panel__zoom js-zoom">View All</span>
             <h1>ABOUT</h1>
         </div>
@@ -48,7 +59,7 @@
             <h1>WORKS</h1>
         </div>
         <div class="panel" data-x-pos="0"  data-y-pos="-1">
-            <span class="panel__nav panel__nav--up js-up">ABOUT</span>
+            <span class="panel__nav panel__nav--up js-up">Main</span>
             <span class="panel__nav panel__nav--left js-up js-left">SKILLS</span>
             <span class="panel__nav panel__nav--right js-up js-right">WORKS</span>
             <span class="panel__zoom js-zoom">View All</span>
@@ -56,6 +67,12 @@
         </div>
     </div>
 </div>
-<script defer src="script.js"></script>
+<script defer src="./js/script.js"></script>
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+<script defer src="./js/canvas--crowd-simulator.js"></script>
+
+<!--<script defer src="slider-pages.js"></script>-->
+<!--<script defer src="./js/paralax-screen.js"></script>-->
 </body>
 </html>
