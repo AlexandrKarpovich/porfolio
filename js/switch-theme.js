@@ -39,6 +39,5 @@ window.addEventListener("DOMContentLoaded",	() => {
 
         }
     })
-    // Todo: преключение темы записывать в localStorage
     // Todo: добавить переключение по рассвету и закату https://www.npmjs.com/package/sunrise-sunset-js
 });
