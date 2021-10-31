@@ -1,33 +1,44 @@
 window.addEventListener("DOMContentLoaded",	() => {
 
-    const themeButton = document.querySelector('.theme-btn'),
-        themeType = document.querySelector('.theme-type');
+    const   lightTheme = 'light-theme',
+            darkTheme = 'dark-theme';
+    const   body = document.body;
+
+    const   themeButton = document.querySelector('.theme-btn'),
+            themeType = document.querySelector('.theme-type');
+
+   if(localStorage.getItem('theme') === lightTheme) {
+       body.classList.remove(`${darkTheme}`);
+       body.classList.add(`${lightTheme}`);
+   } else {
+       body.classList.remove(`${lightTheme}`);
+       body.classList.add(`${darkTheme}`);
+   }
 
     themeButton.addEventListener('click', () => {
 
         //Apply theme
-        if (document.body.classList.contains('light-theme')) {
+        if (body.classList.contains(`${lightTheme}`)) {
 
             //Remove light theme
-            document.body.classList.remove('light-theme');
-
+            body.classList.remove(`${lightTheme}`);
             //Add dark theme
-            document.body.classList.add('dark-theme');
-
+            body.classList.add(`${darkTheme}`);
+            localStorage.setItem('theme', `${darkTheme}`);
             //Set button text
             themeType.textContent = 'Light';
 
         } else {
-
             //Remove dark theme
-            document.body.classList.remove('dark-theme');
-
+            body.classList.remove(`${darkTheme}`);
             //Add light theme
-            document.body.classList.add('light-theme');
-
+            body.classList.add(`${lightTheme}`);
+            localStorage.setItem('theme', `${lightTheme}`);
             //Set button text
             themeType.textContent = 'Dark';
 
         }
     })
+    // Todo: преключение темы записывать в localStorage
+    // Todo: добавить переключение по рассвету и закату https://www.npmjs.com/package/sunrise-sunset-js
 });
