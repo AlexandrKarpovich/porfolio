@@ -1,6 +1,13 @@
 /*====== slide pages =======*/
 @import url(slide-pages.css);
 
+/*var*/
+:root {
+    --bg-color: #282a2d;
+    --white-color: #ffffff;
+    --purpul-color: #7D3BED;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,10 +16,9 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #282a2d;
-    /*background-image: url('https://i.imgsafe.org/6c147abfa3.jpg');*/
+    background: var(--bg-color);
     background-repeat: repeat;
-    color: white;
+    color: var(--white-color);
     font-family: 'Oswald', sans-serif;
     letter-spacing: .2rem;
     overflow: hidden;

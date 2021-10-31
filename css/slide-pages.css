@@ -115,7 +115,7 @@ h1 {
 
     padding: 10px;
     border-radius: 25px;
-    background: #7D3BED;
+    background: var(--purpul-color);
     border: 1px solid;
 }
 .panel__nav--up {
