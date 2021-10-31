@@ -16,7 +16,7 @@ body.light-theme {
 }
 .light-theme .panel__nav {
     color: var(--main-black);
-    /*background: var(--purpul-color);*/
+    background: var(--main-white);
 }
 
 /*dark-theme*/
@@ -36,7 +36,7 @@ body.dark-theme {
 }
 .dark-theme .panel__nav {
     color: var(--main-white);
-    /*background: var(--purpul-color);*/
+    background: var(--main-black);
 }
 
 .theme-btn {
