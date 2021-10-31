@@ -112,6 +112,11 @@ h1 {
     transition: opacity .3s cubic-bezier(.55,0,.1,1);
     user-select: none;
     will-change: opacity;
+
+    padding: 10px;
+    border-radius: 25px;
+    background: #7D3BED;
+    border: 1px solid;
 }
 .panel__nav--up {
     left: 50%;
