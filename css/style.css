@@ -1,11 +1,16 @@
-/*====== slide pages =======*/
+/*====== import =======*/
 @import url(slide-pages.css);
+@import url(switch-theme.css);
 
 /*var*/
 :root {
-    --bg-color: #282a2d;
-    --white-color: #ffffff;
     --purpul-color: #7D3BED;
+
+    /*black theme*/
+    --main-black: #282a2d;
+
+    /*white theme*/
+    --main-white: #ffffff;
 }
 
 * {
@@ -16,9 +21,9 @@
 body {
     margin: 0;
     padding: 0;
-    background: var(--bg-color);
+    background: var(--main-black);
+    color: var(--main-white);
     background-repeat: repeat;
-    color: var(--white-color);
     font-family: 'Oswald', sans-serif;
     letter-spacing: .2rem;
     overflow: hidden;

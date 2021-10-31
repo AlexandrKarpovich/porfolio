@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Portfolio</title>
 </head>
-<body>
+<body class="light-theme">
 
 <div class="site-wrap">
     <div class="panel-wrap animate--tilt">
+
         <div class="panel" data-x-pos="0"  data-y-pos="0">
             <nav class="menu">
                 <span class="panel__nav panel__nav--up js-up">ABOUT</span>
@@ -21,6 +22,8 @@
             <div class="page-descrp">
                 <h1>Main</h1>
             </div>
+
+            <button class="theme-btn">Switch to <span class="theme-type">Light</span> Theme</button>
 
             <!--crowed canvas-->
             <canvas id="canvas"></canvas>
@@ -71,6 +74,8 @@
 
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
 <script defer src="./js/canvas--crowd-simulator.js"></script>
+
+<script src="./js/switch-theme.js"></script>
 
 <!--<script defer src="slider-pages.js"></script>-->
 <!--<script defer src="./js/paralax-screen.js"></script>-->
