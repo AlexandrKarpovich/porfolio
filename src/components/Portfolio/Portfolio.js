@@ -32,6 +32,60 @@ const Portfolio = () => {
       technologies: ["Vue", "SCSS"],
       projectUrl: "https://idaproject-test-rho.vercel.app/",
       githubUrl: "https://github.com/AlexandrKarpovich/idaproject-test"
+    },
+    {
+      id: 4,
+      title: "React Sneakers",
+      description: "обучающий проект",
+      image: ReactSneakersImg,
+      technologies: ["React", "SCSS"],
+      projectUrl: "https://react-sneakers-app-zeta.vercel.app",
+      githubUrl: "https://github.com/AlexandrKarpovich/react-sneakers"
+    },
+    {
+      id: 5,
+      title: "Club mtt",
+      description: "Рабочий проэкт (не стали запускать)",
+      image: ClubmttImg,
+      technologies: ["React", "SCSS"],
+      projectUrl: "https://club-react.vercel.app/",
+      githubUrl: "https://github.com/AlexandrKarpovich/club-react"
+    },
+    {
+      id: 6,
+      title: "Idaproject test",
+      description: "Тестовое задание",
+      image: IdaprojectTestImg,
+      technologies: ["Vue", "SCSS"],
+      projectUrl: "https://idaproject-test-rho.vercel.app/",
+      githubUrl: "https://github.com/AlexandrKarpovich/idaproject-test"
+    },
+    {
+      id: 7,
+      title: "React Sneakers",
+      description: "обучающий проект",
+      image: ReactSneakersImg,
+      technologies: ["React", "SCSS"],
+      projectUrl: "https://react-sneakers-app-zeta.vercel.app",
+      githubUrl: "https://github.com/AlexandrKarpovich/react-sneakers"
+    },
+    {
+      id: 8,
+      title: "Club mtt",
+      description: "Рабочий проэкт (не стали запускать)",
+      image: ClubmttImg,
+      technologies: ["React", "SCSS"],
+      projectUrl: "https://club-react.vercel.app/",
+      githubUrl: "https://github.com/AlexandrKarpovich/club-react"
+    },
+    {
+      id: 9,
+      title: "Idaproject test",
+      description: "Тестовое задание",
+      image: IdaprojectTestImg,
+      technologies: ["Vue", "SCSS"],
+      projectUrl: "https://idaproject-test-rho.vercel.app/",
+      githubUrl: "https://github.com/AlexandrKarpovich/idaproject-test"
     }
   ];
 

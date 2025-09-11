@@ -1,0 +1,59 @@
+/*light-theme*/
+body.light-theme {
+    background: var(--main-white);
+    color: var(--main-black);
+}
+
+/*.light-theme .knockout-text {*/
+/*    background-color: var(--main-white);*/
+/*    color: var(--main-black);*/
+/*    mix-blend-mode: screen;*/
+/*}*/
+
+.light-theme .theme-btn {
+    color: #1a1a1a;
+    border-color: #1a1a1a;
+}
+.light-theme .panel__nav {
+    color: var(--main-black);
+    background: var(--main-white);
+}
+
+/*dark-theme*/
+body.dark-theme {
+    background: var(--main-black);
+    color: var(--main-white);
+}
+/*.dark-theme .knockout-text {*/
+/*    background-color: var(--main-black);*/
+/*    color: var(--main-white);*/
+/*    mix-blend-mode: multiply;*/
+/*}*/
+
+.dark-theme .theme-btn {
+    color: #eee;
+    border-color: #eee;
+}
+.dark-theme .panel__nav {
+    color: var(--main-white);
+    background: var(--main-black);
+}
+
+.theme-btn {
+    position: fixed;
+    z-index: 5;
+    top: 1em;
+    right: 1em;
+    font-family: inherit;
+    font-size: calc(10px + 0.1vw + 0.5vh);
+    border-width: 0.15em;
+    border-style: solid;
+    border-radius: 0.8em;
+    background-color: transparent;
+    margin: 0 auto;
+    padding: 0.8em 1.2em;
+    cursor: pointer;
+    outline: none;
+    white-space: nowrap;
+    user-select: none;
+}

@@ -1,0 +1,39 @@
+/*====== import =======*/
+@import url(slide-pages.css);
+@import url(switch-theme.css);
+
+/*var*/
+:root {
+    --purpul-color: #7D3BED;
+
+    /*black theme*/
+    --main-black: #282a2d;
+
+    /*white theme*/
+    --main-white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--main-black);
+    color: var(--main-white);
+    background-repeat: repeat;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: .2rem;
+    overflow: hidden;
+    perspective: 1000px;
+    text-transform: uppercase;
+}
+
+/*====== canvas =======*/
+#canvas {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}

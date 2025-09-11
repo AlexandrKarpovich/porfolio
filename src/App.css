@@ -1,61 +1,93 @@
-.App {
-  text-align: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.site-wrap {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.app-header {
-  padding: 2rem;
-  color: white;
+.panel-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.app-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
-  font-weight: 700;
-}
-
-.app-header p {
-  margin: 0.5rem 0 0 0;
-  font-size: 1.1rem;
-  opacity: 0.9;
-}
-
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.panel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
+  overflow: auto;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background: var(--bg-color);
+  color: var(--text-color);
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* .menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
 } */
+
+.panel__nav {
+  cursor: pointer;
+  margin: 0 10px;
+  padding: 5px 10px;
+  border: 1px solid var(--text-color);
+}
+
+.panel__zoom {
+  cursor: pointer;
+  margin: 10px;
+  padding: 5px 10px;
+  border: 1px solid var(--text-color);
+}
+
+.homeSocial {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.homeSocial a {
+  color: var(--text-color);
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.theme-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  padding: 10px 15px;
+  border: 1px solid var(--text-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+/* Light theme variables */
+.light-theme {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+/* Dark theme variables */
+.dark-theme {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
