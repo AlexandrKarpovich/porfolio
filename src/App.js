@@ -105,7 +105,7 @@ function App() {
           </nav>
           
           <div className="page-descrp">
-            <h1>Main</h1>
+            <h1>Alex Karpovich</h1>
           </div>
 
           <button className="theme-btn" onClick={toggleTheme}>
@@ -131,6 +131,12 @@ function App() {
           <span className="panel__nav panel__nav--down" onClick={moveDown}>Main</span>
           <span className="panel__zoom">View All</span>
           <h1>ABOUT</h1>
+          <ul>
+            <li>2022 AO MTT (дочерняя компания MTC) Fullstack developer (удалено)</li>
+            <li>2020 B2broker web-developer write code Moscow, B2broker.com</li>
+            <li>2019 IP5 agency Верстальщик, Интегратор Создание и поддержка интернет магазинов на платформе CS-Cart Симферополь, ip-5.ru</li>
+            <li>2018 SiteUP Web-Разработчик/верстальщик Верстка и нарезка PSD макетов под CMS WordPress Симферополь, siteup.ru</li>
+          </ul>
         </div>
 
         {/* Skills Panel */}
@@ -140,6 +146,21 @@ function App() {
           <span className="panel__nav panel__nav--down" onClick={() => { moveRight(); moveDown(); }}>CONTACTS</span>
           <span className="panel__zoom">View All</span>
           <h1>SKILLS</h1>
+          <ul>
+            <li>HTML5(Pug/jade) Flex/Grid, Кроссбраузерная верстка/Адаптивная верстка</li>
+            <li>CSS3(Less, Sass/Scss, Stylus)</li>
+            <li>JavaScript (es6/jquery)</li>
+            <li>React, vue, Angular</li>
+            <li>CMS(Wordpress, Joomla, CS-Cart)</li>
+            <li>Перенос доменов. Перенос сайтов на хостинг</li>
+            <li>системами контроля версий Git, работать с GitHub, GitLab</li>
+            <li>Сборщик Gulp/Webpack, vite</li>
+            <li>Figma, Adobe Photoshop</li>
+            <li>Php</li>
+            <li>MySQL</li>
+            <li>Опыт работы в команде, работа с чужим кодом</li>
+            <li>И самое главное желание профессионально развиваться</li>
+          </ul>
         </div>
 
         {/* Works Panel */}

@@ -17,10 +17,19 @@ const Project = ({ project }) => {
         <h3 className="project-title">{project.title}</h3>
         <p className="project-description">{project.description}</p>
         
-        <div className="project-technologies">
+        {/* <div className="project-technologies">
           {project.technologies.map((tech, index) => (
             <span key={index} className="tech-tag">{tech}</span>
           ))}
+        </div> */}
+
+        <div className="project-meta">
+          <span className="project-date">{project.date}</span>
+          <div className="project-technologies">
+            {project.technologies.map((tech, index) => (
+              <span key={index} className="tech-tag">{tech}</span>
+            ))}
+          </div>
         </div>
 
         <div className="project-links">
