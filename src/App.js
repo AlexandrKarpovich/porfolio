@@ -91,9 +91,9 @@ function App() {
   };
 
   return (
-    <div className="site-wrap">
+    <div className="site-wrap show-all">
       <div className="panel-wrap animate--tilt">
-        
+
         {/* Main Panel */}
         <div className="panel" data-x-pos="0" data-y-pos="0">
           <nav className="menu">
@@ -101,9 +101,9 @@ function App() {
             <span className="panel__nav panel__nav--left" onClick={moveLeft}>SKILLS</span>
             <span className="panel__nav panel__nav--right" onClick={moveRight}>WORKS</span>
             <span className="panel__nav panel__nav--down" onClick={moveDown}>CONTACTS</span>
-            <span className="panel__zoom">View All</span>
+            <span className="panel__zoom" >View All</span>
           </nav>
-          
+
           <div className="page-descrp">
             <h1>Alex Karpovich</h1>
           </div>

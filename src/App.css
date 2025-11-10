@@ -72,13 +72,15 @@
 
 /* Light theme variables */
 .light-theme {
-  --bg-color: #ffffff;
+  /*--bg-color: #ffffff;*/
+  --bg-color: linear-gradient(135deg, #d6c2ff 0%, #9b87f5 100%);
   --text-color: #000000;
 }
 
 /* Dark theme variables */
 .dark-theme {
-  --bg-color: #1a1a1a;
+  /*--bg-color: #1a1a1a;*/
+  --bg-color: linear-gradient(135deg, #1e3a8a 0%, #581c87 100%);
   --text-color: #ffffff;
 }
 
@@ -90,4 +92,101 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Стили для zoom режима - как в оригинале */
+.site-wrap.show-all {
+  transform: rotateY(-15deg) scale(0.2);
+  transition: transform 0.6s cubic-bezier(.55,0,.1,1);
+}
+
+.site-wrap.show-all .panel-wrap {
+  transform: translateX(0%) translateY(0%) !important;
+}
+
+/* Позиционирование панелей в обычном режиме */
+/*.panel[data-x-pos="0"][data-y-pos="0"] { transform: translateX(0%) translateY(0%); }*/
+/*.panel[data-x-pos="0"][data-y-pos="1"] { transform: translateX(0%) translateY(-100%); }*/
+/*.panel[data-x-pos="-1"][data-y-pos="0"] { transform: translateX(100%) translateY(0%); }*/
+/*.panel[data-x-pos="1"][data-y-pos="0"] { transform: translateX(-100%) translateY(0%); }*/
+/*.panel[data-x-pos="0"][data-y-pos="-1"] { transform: translateX(0%) translateY(100%); }*/
+
+/* При hover на панели в режиме zoom */
+.site-wrap.show-all .panel:hover:before {
+  background-color: rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+
+.site-wrap.show-all .panel {
+  pointer-events: auto;
+}
+
+.site-wrap.show-all .panel:before {
+  pointer-events: all;
+}
+
+
+
+
+
+/*========*/
+
+/* Стили для zoom режима */
+.site-wrap.show-all {
+  transform: rotateY(-15deg) scale(0.2);
+  transition: transform 0.6s cubic-bezier(.55,0,.1,1);
+}
+
+.site-wrap.show-all .panel-wrap {
+  transform: translateX(0%) translateY(0%) !important;
+}
+
+/* Позиционирование панелей в обычном режиме */
+.panel[data-x-pos="0"][data-y-pos="0"] { transform: translateX(0%) translateY(0%); }
+.panel[data-x-pos="0"][data-y-pos="1"] { transform: translateX(0%) translateY(-100%); }
+.panel[data-x-pos="-1"][data-y-pos="0"] { transform: translateX(100%) translateY(0%); }
+.panel[data-x-pos="1"][data-y-pos="0"] { transform: translateX(-100%) translateY(0%); }
+.panel[data-x-pos="0"][data-y-pos="-1"] { transform: translateX(0%) translateY(100%); }
+
+/* Стили для видимости всех панелей при зуме */
+.site-wrap:not(.show-all) .panel {
+  opacity: 1;
+  visibility: visible;
+}
+
+.site-wrap.show-all .panel {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Hover эффекты для панелей в режиме zoom */
+.site-wrap.show-all .panel:hover:before {
+  background-color: rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+
+.site-wrap.show-all .panel:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.site-wrap.show-all .panel:hover:before {
+  background-color: rgba(255,255,255,0.1);
+  pointer-events: all;
+}
+
+/* Отключение навигации в режиме zoom */
+.site-wrap.show-all .panel__nav,
+.site-wrap.show-all .panel__zoom {
+  pointer-events: none;
+  opacity: 0.3;
 }
