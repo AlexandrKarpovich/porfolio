@@ -1,4 +1,4 @@
-import './Portfolio.css';
+import './Portfolio.scss';
 import Project from '../Project/Project';
 import ReactSneakersImg from '../../images/react-sneakers.png';
 import ClubmttImg from "../../images/сlub-mtt.png";
@@ -15,6 +15,16 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
+      title: "🛒 Интернет-магазин",
+      description: "обучающий проект",
+      image: ReactSneakersImg,
+      technologies: ["Laravel", "React", "Postgress", "SCSS"],
+      projectUrl: "http://77.232.128.98:8081",
+      githubUrl: "https://github.com/AlexandrKarpovich/laravel-shop",
+      date: "декабрь 2025"
+    },
+    {
+      id: 2,
       title: "React Sneakers",
       description: "обучающий проект",
       image: ReactSneakersImg,
@@ -24,7 +34,7 @@ const Portfolio = () => {
       date: "Январь 2023"
     },
     {
-      id: 2,
+      id: 3,
       title: "Club mtt",
       description: "Рабочий проект (не стали запускать)",
       image: ClubmttImg,
@@ -34,7 +44,7 @@ const Portfolio = () => {
       date: "Март 2023"
     },
     {
-      id: 3,
+      id: 4,
       title: "Idaproject test",
       description: "Тестовое задание",
       image: IdaprojectTestImg,
@@ -44,7 +54,7 @@ const Portfolio = () => {
       date: "Апрель 2023"
     },
     {
-      id: 4,
+      id: 5,
       title: "Admin panel",
       description: "обучающий проект",
       image: AdminPanelImg,
@@ -54,7 +64,7 @@ const Portfolio = () => {
       date: "Май 2023"
     },
     {
-      id: 5,
+      id: 6,
       title: "Github finder",
       description: "обучающий проект",
       image: GithubFinderImg,
@@ -64,7 +74,7 @@ const Portfolio = () => {
       date: "Июнь 2023"
     },
     {
-      id: 6,
+      id: 7,
       title: "Angular Github finder",
       description: "обучающий проект",
       image: AngularGithubImg,
@@ -74,7 +84,7 @@ const Portfolio = () => {
       date: "Июль 2023"
     },
     {
-      id: 7,
+      id: 8,
       title: "Employcity test",
       description: "Тестовое задание",
       image: EmploycityTestImg,
@@ -84,7 +94,7 @@ const Portfolio = () => {
       date: "Август 2023"
     },
     {
-      id: 8,
+      id: 9,
       title: "Skillbox angular",
       description: "Обучение курс",
       image: SkillboxAngularImg,
@@ -94,7 +104,7 @@ const Portfolio = () => {
       date: "Сентябрь 2023"
     },
     {
-      id: 9,
+      id: 10,
       title: "Star wars",
       description: "обучающий проект",
       image: StarWarsImg,
@@ -104,7 +114,7 @@ const Portfolio = () => {
       date: "Октябрь 2023"
     },
     {
-      id: 10,
+      id: 11,
       title: "doctors",
       description: "Тестовое задание",
       image: DoctorsImg,

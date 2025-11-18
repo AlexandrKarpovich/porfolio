@@ -1,0 +1,45 @@
+{
+  "main": {
+    "title": "Main",
+    "about": "About",
+    "skills": "Skills",
+    "works": "Works",
+    "contacts": "Contacts",
+    "viewAll": "View All",
+    "switchTheme": "Switch to",
+    "light": "Light",
+    "dark": "Dark",
+    "theme": "Theme"
+  },
+  "about": {
+    "title": "ABOUT",
+    "experience": [
+      "2022 AO MTT (subsidiary of MTC) Fullstack developer (removed)",
+      "2020 B2broker web-developer write code Moscow, B2broker.com",
+      "2019 IP5 agency Layout designer, Integrator Creation and support of online stores on the CS-Cart platform Simferopol, ip-5.ru",
+      "2018 SiteUP Web Developer/Layout designer Layout and slicing of PSD layouts for CMS WordPress Simferopol, siteup.ru"
+    ]
+  },
+  "skills": {
+    "title": "SKILLS",
+    "list": [
+      "HTML5(Pug/jade) Flex/Grid, Cross-browser layout/Responsive layout",
+      "CSS3(Less, Sass/Scss, Stylus)",
+      "JavaScript (es6/jquery)",
+      "React, vue, Angular",
+      "CMS(Wordpress, Joomla, CS-Cart)",
+      "Domain transfer. Website transfer to hosting",
+      "Version control systems Git, work with GitHub, GitLab",
+      "Builder Gulp/Webpack, vite",
+      "Figma, Adobe Photoshop",
+      "Php",
+      "MySQL",
+      "Teamwork experience, working with someone else's code",
+      "And most importantly, the desire to develop professionally"
+    ]
+  },
+  "contacts": {
+    "title": "CONTACTS",
+    "content": "Contacts text..."
+  }
+}

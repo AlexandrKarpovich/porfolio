@@ -24,3 +24,17 @@
     0% {margin-top: 0;}
     100% {margin-top: 20px;}
 }
+
+
+.homeSocial {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.homeSocial a {
+    color: var(--text-color);
+    margin: 0 10px;
+    text-decoration: none;
+}

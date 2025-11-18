@@ -1,0 +1,45 @@
+{
+  "main": {
+    "title": "Главная",
+    "about": "Обо мне",
+    "skills": "Навыки",
+    "works": "Проекты",
+    "contacts": "Контакты",
+    "viewAll": "Обзор",
+    "switchTheme": "Переключить на",
+    "light": "Светлую",
+    "dark": "Темную",
+    "theme": "Тему"
+  },
+  "about": {
+    "title": "ОБО МНЕ",
+    "experience": [
+      "2022 AO MTT (дочерняя компания MTC) Fullstack developer (удалено)",
+      "2020 B2broker web-developer write code Moscow, B2broker.com",
+      "2019 IP5 agency Верстальщик, Интегратор Создание и поддержка интернет магазинов на платформе CS-Cart Симферополь, ip-5.ru",
+      "2018 SiteUP Web-Разработчик/верстальщик Верстка и нарезка PSD макетов под CMS WordPress Симферополь, siteup.ru"
+    ]
+  },
+  "skills": {
+    "title": "НАВЫКИ",
+    "list": [
+      "HTML5(Pug/jade) Flex/Grid, Кроссбраузерная верстка/Адаптивная верстка",
+      "CSS3(Less, Sass/Scss, Stylus)",
+      "JavaScript (es6/jquery)",
+      "React, vue, Angular",
+      "CMS(Wordpress, Joomla, CS-Cart)",
+      "Перенос доменов. Перенос сайтов на хостинг",
+      "системами контроля версий Git, работать с GitHub, GitLab",
+      "Сборщик Gulp/Webpack, vite",
+      "Figma, Adobe Photoshop",
+      "Php",
+      "MySQL",
+      "Опыт работы в команде, работа с чужим кодом",
+      "И самое главное желание профессионально развиваться"
+    ]
+  },
+  "contacts": {
+    "title": "КОНТАКТЫ",
+    "content": "Текст контактов..."
+  }
+}

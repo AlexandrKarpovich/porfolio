@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { gsap } from 'gsap';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
+import './styles/style.scss'
 import './App.css';
-import './styles/slide-pages.css';
-import './styles/switch-theme.css';
-import './styles/homeSocial.css';
-import './pages/Works/Works.css'
+import './styles/slide-pages.scss';
+import './styles/switch-theme.scss';
+import './styles/homeSocial.scss';
 import CrowdSimulator from './components/CrowdSimulator/CrowdSimulator';
 import Portfolio from './components/Portfolio/Portfolio';
+import { useLanguage } from './hooks/useLanguage';
 
 // Utility functions
 const hasClass = (el, cls) => el.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
@@ -17,6 +17,14 @@ function App() {
   const [posX, setPosX] = useState(0);
   const [posY, setPosY] = useState(0);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  // Добавляем хук языка
+  const { language, toggleLanguage, t } = useLanguage();
+
+  const siteRef = useRef(null);
+  const wrapRef = useRef(null);
+  const panelRefs = useRef([]);
 
   useEffect(() => {
     // Initialize theme
@@ -35,34 +43,30 @@ function App() {
     initCrowdSimulator();
   }, []);
 
-  const setPos = () => {
-    const wrap = document.querySelector('.panel-wrap');
-    if (wrap) {
-      wrap.style.transform = `translateX(${posX}00%) translateY(${posY}00%)`;
-      setTimeout(() => removeClass(wrap, 'animate'), 600);
-    }
-  };
-
   const moveUp = () => {
-    const wrap = document.querySelector('.panel-wrap');
+    if (isZoomed) return;
+    const wrap = wrapRef.current;
     addClass(wrap, 'animate');
     setPosY(prev => prev + 1);
   };
 
   const moveLeft = () => {
-    const wrap = document.querySelector('.panel-wrap');
+    if (isZoomed) return;
+    const wrap = wrapRef.current;
     addClass(wrap, 'animate');
     setPosX(prev => prev + 1);
   };
 
   const moveRight = () => {
-    const wrap = document.querySelector('.panel-wrap');
+    if (isZoomed) return;
+    const wrap = wrapRef.current;
     addClass(wrap, 'animate');
     setPosX(prev => prev - 1);
   };
 
   const moveDown = () => {
-    const wrap = document.querySelector('.panel-wrap');
+    if (isZoomed) return;
+    const wrap = wrapRef.current;
     addClass(wrap, 'animate');
     setPosY(prev => prev - 1);
   };
@@ -81,115 +85,364 @@ function App() {
     }
   };
 
+  // Zoom Logic
+  const zoomOut = (e) => {
+    if (e) e.stopPropagation();
+
+    const site = siteRef.current;
+    const wrap = wrapRef.current;
+
+    if (site && wrap) {
+      addClass(site, 'show-all');
+      setIsZoomed(true);
+
+      panelRefs.current.forEach(panel => {
+        if (panel) {
+          panel.addEventListener('click', setPanelAndZoom);
+        }
+      });
+    }
+  };
+
+  const zoomIn = () => {
+    const site = siteRef.current;
+    const wrap = wrapRef.current;
+
+    if (site && wrap) {
+      removeClass(site, 'show-all');
+      removeClass(wrap, 'zoom-mode');
+      setIsZoomed(false);
+
+      panelRefs.current.forEach(panel => {
+        if (panel) {
+          panel.removeEventListener('click', setPanelAndZoom);
+        }
+      });
+    }
+  };
+
+  const setPanelAndZoom = (e) => {
+    let target = e.target;
+    while (target && !target.hasAttribute('data-x-pos')) {
+      target = target.parentElement;
+    }
+
+    if (target) {
+      const xPos = parseInt(target.getAttribute('data-x-pos'));
+      const yPos = parseInt(target.getAttribute('data-y-pos'));
+
+      setPosX(-xPos);
+      setPosY(yPos);
+
+      setTimeout(() => {
+        zoomIn();
+      }, 300);
+    }
+  };
+
+  const addPanelRef = (ref, index) => {
+    panelRefs.current[index] = ref;
+  };
+
+  // Используем useCallback для setPos
+  const setPos = useCallback(() => {
+    const wrap = wrapRef.current;
+    if (wrap) {
+      if (isZoomed) {
+        wrap.style.transform = 'scale(0.6)';
+      } else {
+        wrap.style.transform = `translateX(${posX}00%) translateY(${posY}00%)`;
+        setTimeout(() => removeClass(wrap, 'animate'), 600);
+      }
+    }
+  }, [posX, posY, isZoomed]);
+
   useEffect(() => {
     setPos();
-  }, [posX, posY]);
+  }, [setPos]);
 
   const initCrowdSimulator = () => {
-    // Crowd simulator will be implemented separately
     console.log('Crowd simulator initialized');
   };
 
   return (
-    <div className="site-wrap show-all">
-      <div className="panel-wrap animate--tilt">
+      <div className="site-wrap" ref={siteRef}>
+        <div className="panel-wrap animate--tilt" ref={wrapRef}>
 
-        {/* Main Panel */}
-        <div className="panel" data-x-pos="0" data-y-pos="0">
-          <nav className="menu">
-            <span className="panel__nav panel__nav--up" onClick={moveUp}>ABOUT</span>
-            <span className="panel__nav panel__nav--left" onClick={moveLeft}>SKILLS</span>
-            <span className="panel__nav panel__nav--right" onClick={moveRight}>WORKS</span>
-            <span className="panel__nav panel__nav--down" onClick={moveDown}>CONTACTS</span>
-            <span className="panel__zoom" >View All</span>
-          </nav>
+          {/* Main Panel */}
+          <div
+              className="panel"
+              data-x-pos="0"
+              data-y-pos="0"
+              ref={ref => addPanelRef(ref, 0)}
+          >
+            <nav className="menu">
+              <span className="panel__nav panel__nav--up" onClick={moveUp}>
+                {t('main.about')}
+              </span>
+              <span className="panel__nav panel__nav--left" onClick={moveLeft}>
+                {t('main.skills')}
+              </span>
+              <span className="panel__nav panel__nav--right" onClick={moveRight}>
+                {t('main.works')}
+              </span>
+              <span className="panel__nav panel__nav--down" onClick={moveDown}>
+                {t('main.contacts')}
+              </span>
+              <span className="panel__zoom" onClick={zoomOut}>
+                {t('main.viewAll')}
+              </span>
+            </nav>
 
-          <div className="page-descrp">
-            <h1>Alex Karpovich</h1>
+            {/* Переключатель темы (солнышко/луна) */}
+            <div className="theme-toggle" onClick={toggleTheme}>
+              <div className={`theme-icon ${isDarkTheme ? 'moon' : 'sun'}`}>
+                {isDarkTheme ? (
+                    // Иконка луны
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                    </svg>
+                ) : (
+                    // Иконка солнца
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                      <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                )}
+              </div>
+            </div>
+
+            {/* Переключатель языка */}
+            <div className="language-toggle" onClick={toggleLanguage}>
+              <div className="language-text">
+                {language === 'ru' ? 'EN' : 'RU'}
+              </div>
+            </div>
+
+            <CrowdSimulator />
+
+            <div className="homeSocial">
+              <a href="https://github.com/AlexandrKarpovich" target="_blank" title="My GitHub" rel="noopener noreferrer">
+                <i className="fa fa-github fa-2x fa-fw"></i>
+              </a>
+            </div>
           </div>
 
-          <button className="theme-btn" onClick={toggleTheme}>
-            Switch to <span className="theme-type">{isDarkTheme ? 'Light' : 'Dark'}</span> Theme
-          </button>
+          {/* About Panel */}
+          <div
+              className="panel"
+              data-x-pos="0"
+              data-y-pos="1"
+              ref={ref => addPanelRef(ref, 1)}
+          >
+            <span className="panel__nav panel__nav--left" onClick={() => { moveDown(); moveLeft(); }}>
+              {t('main.skills')}
+            </span>
+            <span className="panel__nav panel__nav--right" onClick={() => { moveDown(); moveRight(); }}>
+              {t('main.works')}
+            </span>
+            <span className="panel__nav panel__nav--down" onClick={moveDown}>
+              {t('main.title')}
+            </span>
+            <span className="panel__zoom" onClick={zoomOut}>
+              {t('main.viewAll')}
+            </span>
 
-          <CrowdSimulator />
+            {/* Переключатель темы (солнышко/луна) */}
+            <div className="theme-toggle" onClick={toggleTheme}>
+              <div className={`theme-icon ${isDarkTheme ? 'moon' : 'sun'}`}>
+                {isDarkTheme ? (
+                    // Иконка луны
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                    </svg>
+                ) : (
+                    // Иконка солнца
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                      <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                )}
+              </div>
+            </div>
 
-          <div className="homeSocial">
-            <a href="#" target="_blank" title="My Instagram" rel="noopener noreferrer">
-              <i className="fa fa-instagram fa-2x fa-fw"></i>
-            </a>
-            <a href="https://github.com/AlexandrKarpovich" target="_blank" title="My GitHub" rel="noopener noreferrer">
-              <i className="fa fa-github fa-2x fa-fw"></i>
-            </a>
+            {/* Переключатель языка */}
+            <div className="language-toggle" onClick={toggleLanguage}>
+              <div className="language-text">
+                {language === 'ru' ? 'EN' : 'RU'}
+              </div>
+            </div>
+
+            <div className="container">
+              <h2 className="title">{t('about.title')}</h2>
+              <ul className="description">
+                {t('about.experience').map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
 
-        {/* About Panel */}
-        <div className="panel" data-x-pos="0" data-y-pos="1">
-          <span className="panel__nav panel__nav--left" onClick={() => { moveDown(); moveLeft(); }}>SKILLS</span>
-          <span className="panel__nav panel__nav--right" onClick={() => { moveDown(); moveRight(); }}>WORKS</span>
-          <span className="panel__nav panel__nav--down" onClick={moveDown}>Main</span>
-          <span className="panel__zoom">View All</span>
-          <h1>ABOUT</h1>
-          <ul>
-            <li>2022 AO MTT (дочерняя компания MTC) Fullstack developer (удалено)</li>
-            <li>2020 B2broker web-developer write code Moscow, B2broker.com</li>
-            <li>2019 IP5 agency Верстальщик, Интегратор Создание и поддержка интернет магазинов на платформе CS-Cart Симферополь, ip-5.ru</li>
-            <li>2018 SiteUP Web-Разработчик/верстальщик Верстка и нарезка PSD макетов под CMS WordPress Симферополь, siteup.ru</li>
-          </ul>
-        </div>
+          {/* Skills Panel */}
+          <div
+              className="panel"
+              data-x-pos="-1"
+              data-y-pos="0"
+              ref={ref => addPanelRef(ref, 2)}
+          >
+            <span className="panel__nav panel__nav--up" onClick={() => { moveRight(); moveUp(); }}>
+              {t('main.about')}
+            </span>
+            <span className="panel__nav panel__nav--right" onClick={moveRight}>
+              {t('main.title')}
+            </span>
+            <span className="panel__nav panel__nav--down" onClick={() => { moveRight(); moveDown(); }}>
+              {t('main.contacts')}
+            </span>
+            <span className="panel__zoom" onClick={zoomOut}>
+              {t('main.viewAll')}
+            </span>
 
-        {/* Skills Panel */}
-        <div className="panel" data-x-pos="-1" data-y-pos="0">
-          <span className="panel__nav panel__nav--up" onClick={() => { moveRight(); moveUp(); }}>ABOUT</span>
-          <span className="panel__nav panel__nav--right" onClick={moveRight}>WORKS</span>
-          <span className="panel__nav panel__nav--down" onClick={() => { moveRight(); moveDown(); }}>CONTACTS</span>
-          <span className="panel__zoom">View All</span>
-          <h1>SKILLS</h1>
-          <ul>
-            <li>HTML5(Pug/jade) Flex/Grid, Кроссбраузерная верстка/Адаптивная верстка</li>
-            <li>CSS3(Less, Sass/Scss, Stylus)</li>
-            <li>JavaScript (es6/jquery)</li>
-            <li>React, vue, Angular</li>
-            <li>CMS(Wordpress, Joomla, CS-Cart)</li>
-            <li>Перенос доменов. Перенос сайтов на хостинг</li>
-            <li>системами контроля версий Git, работать с GitHub, GitLab</li>
-            <li>Сборщик Gulp/Webpack, vite</li>
-            <li>Figma, Adobe Photoshop</li>
-            <li>Php</li>
-            <li>MySQL</li>
-            <li>Опыт работы в команде, работа с чужим кодом</li>
-            <li>И самое главное желание профессионально развиваться</li>
-          </ul>
-        </div>
+            {/* Переключатель темы (солнышко/луна) */}
+            <div className="theme-toggle" onClick={toggleTheme}>
+              <div className={`theme-icon ${isDarkTheme ? 'moon' : 'sun'}`}>
+                {isDarkTheme ? (
+                    // Иконка луны
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                    </svg>
+                ) : (
+                    // Иконка солнца
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                      <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                )}
+              </div>
+            </div>
 
-        {/* Works Panel */}
-        <div className="panel" data-x-pos="1" data-y-pos="0">
-          <span className="panel__nav panel__nav--up" onClick={() => { moveLeft(); moveUp(); }}>ABOUT</span>
-          <span className="panel__nav panel__nav--left" onClick={moveLeft}>SKILLS</span>
-          <span className="panel__nav panel__nav--down" onClick={() => { moveLeft(); moveDown(); }}>CONTACTS</span>
-          <span className="panel__zoom">View All</span>
-          {/* <h1>WORKS</h1> */}
-          <div className="works">
-            <header className="works-header">
-              {/* <h1>Мое Портфолио</h1> */}
-              {/* <p>Здесь собраны мои проэкты c github</p> */}
-            </header>
-            <Portfolio />
+            {/* Переключатель языка */}
+            <div className="language-toggle" onClick={toggleLanguage}>
+              <div className="language-text">
+                {language === 'ru' ? 'EN' : 'RU'}
+              </div>
+            </div>
+
+            <div className="container">
+              <h2 className="title">{t('skills.title')}</h2>
+              <ul className="description">
+                {t('skills.list').map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
 
-        {/* Contacts Panel */}
-        <div className="panel" data-x-pos="0" data-y-pos="-1">
-          <span className="panel__nav panel__nav--up" onClick={moveUp}>Main</span>
-          <span className="panel__nav panel__nav--left" onClick={() => { moveUp(); moveLeft(); }}>SKILLS</span>
-          <span className="panel__nav panel__nav--right" onClick={() => { moveUp(); moveRight(); }}>WORKS</span>
-          <span className="panel__zoom">View All</span>
-          <h1>CONTACTS</h1>
-        </div>
+          {/* Works Panel */}
+          <div
+              className="panel"
+              data-x-pos="1"
+              data-y-pos="0"
+              ref={ref => addPanelRef(ref, 3)}
+          >
+            <span className="panel__nav panel__nav--up" onClick={() => { moveLeft(); moveUp(); }}>
+              {t('main.about')}
+            </span>
+            <span className="panel__nav panel__nav--left" onClick={moveLeft}>
+              {t('main.skills')}
+            </span>
+            <span className="panel__nav panel__nav--down" onClick={() => { moveLeft(); moveDown(); }}>
+              {t('main.contacts')}
+            </span>
+            <span className="panel__zoom" onClick={zoomOut}>
+              {t('main.viewAll')}
+            </span>
 
+            {/* Переключатель темы (солнышко/луна) */}
+            <div className="theme-toggle" onClick={toggleTheme}>
+              <div className={`theme-icon ${isDarkTheme ? 'moon' : 'sun'}`}>
+                {isDarkTheme ? (
+                    // Иконка луны
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                    </svg>
+                ) : (
+                    // Иконка солнца
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                      <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                )}
+              </div>
+            </div>
+
+            {/* Переключатель языка */}
+            <div className="language-toggle" onClick={toggleLanguage}>
+              <div className="language-text">
+                {language === 'ru' ? 'EN' : 'RU'}
+              </div>
+            </div>
+
+            <div className="container">
+              <Portfolio />
+            </div>
+          </div>
+
+          {/* Contacts Panel */}
+          <div
+              className="panel"
+              data-x-pos="0"
+              data-y-pos="-1"
+              ref={ref => addPanelRef(ref, 4)}
+          >
+            <span className="panel__nav panel__nav--up" onClick={moveUp}>
+              {t('main.title')}
+            </span>
+            <span className="panel__nav panel__nav--left" onClick={() => { moveUp(); moveLeft(); }}>
+              {t('main.skills')}
+            </span>
+            <span className="panel__nav panel__nav--right" onClick={() => { moveUp(); moveRight(); }}>
+              {t('main.works')}
+            </span>
+            <span className="panel__zoom" onClick={zoomOut}>
+              {t('main.viewAll')}
+            </span>
+
+            {/* Переключатель темы (солнышко/луна) */}
+            <div className="theme-toggle" onClick={toggleTheme}>
+              <div className={`theme-icon ${isDarkTheme ? 'moon' : 'sun'}`}>
+                {isDarkTheme ? (
+                    // Иконка луны
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                    </svg>
+                ) : (
+                    // Иконка солнца
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                      <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                )}
+              </div>
+            </div>
+
+            {/* Переключатель языка */}
+            <div className="language-toggle" onClick={toggleLanguage}>
+              <div className="language-text">
+                {language === 'ru' ? 'EN' : 'RU'}
+              </div>
+            </div>
+
+            <div className="container">
+              <h2 className="title">{t('contacts.title')}</h2>
+              <div className="description">
+                {t('contacts.content')}
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
   );
 }
 
