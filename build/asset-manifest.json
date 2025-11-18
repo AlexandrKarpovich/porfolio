@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.34687f51.css",
+    "main.js": "/static/js/main.dd0e67ed.js",
+    "static/js/453.ad7768ec.chunk.js": "/static/js/453.ad7768ec.chunk.js",
+    "static/media/employcity-test.png": "/static/media/employcity-test.66664cd84dde13c25e4d.png",
+    "static/media/star-wars.png": "/static/media/star-wars.aa76ef4b89c35cbe8754.png",
+    "static/media/admin-panel.png": "/static/media/admin-panel.cabcd878ad80e31932de.png",
+    "static/media/idaproject-test.png": "/static/media/idaproject-test.5f05c6c4853ae7f7a9d5.png",
+    "static/media/doctors.png": "/static/media/doctors.80713fa30a3358990bd9.png",
+    "static/media/open-peeps-sheet.png": "/static/media/open-peeps-sheet.84ccb11ca3f6c465c21b.png",
+    "static/media/react-sneakers.png": "/static/media/react-sneakers.8d82a474a702916d20b5.png",
+    "static/media/сlub-mtt.png": "/static/media/сlub-mtt.baa80fd777c47877077f.png",
+    "static/media/skillbox-angular.png": "/static/media/skillbox-angular.712746c95303ec705c99.png",
+    "static/media/angular-github.png": "/static/media/angular-github.44122ad7d23349c407ab.png",
+    "static/media/github-finder.png": "/static/media/github-finder.44122ad7d23349c407ab.png",
+    "index.html": "/index.html",
+    "main.34687f51.css.map": "/static/css/main.34687f51.css.map",
+    "main.dd0e67ed.js.map": "/static/js/main.dd0e67ed.js.map",
+    "453.ad7768ec.chunk.js.map": "/static/js/453.ad7768ec.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.34687f51.css",
+    "static/js/main.dd0e67ed.js"
+  ]
+}
